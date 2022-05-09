@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script>
+      var scores = {
+        Valentina: {
+          values: 0,
+        },
+        Karlo: {
+          values: 0
+        },
+        Martin: {
+          values: 0
+        }
+      };
+
+
+      var maxVrijednost = 0;
+      var prekid = 0;
+      var duljinaObjektaScores = Object.keys(scores).length;
+      alert("Igra unosa igrača koji su osvojili bodove. Igru igraju:" + Object.keys(scores) + " Pobjednik je onaj igrač koji prvi skupi 3 boda.");
+      console.log(Object.keys(scores));
+      while (maxVrijednost < 3) {
+
+        var name = prompt("Unesi ime igrača koji dobiva bodove: "); //prompt ekran za unos imena igraca
+        console.log(name);
+        if (name === "null"){
+          prekid = 1;
+          break;
+        };
+
+        if (!(name in scores)){
+          alert("Pogrešno ime, pokušaj ponovno.");
+          continue;
+        };
+
+        console.log(scores[name]);
+        var pristupVrijednostiIgraca = scores[name]; //ovime pristupama scores -> name tako da sada možemo baratiti s ovom ovime i ne trebamo pisati scores.ime.values i slično
+        var brojBodova = ++pristupVrijednostiIgraca.values; //ovako napravi izračun, važno da je inkrement prije vrijednost, jer će u slučaju da je nakon brojBodova ostati isti
+        console.log(brojBodova);
+        console.log(scores[name]);
+        console.log("Igrač " + name + " ima " + brojBodova + " bodova.");
+        if(brojBodova > maxVrijednost)
+            maxVrijednost = brojBodova;
+        console.log("Nova max vrijednost je: " + maxVrijednost);
+      };
+      if(prekid === 1){
+        $("body").append("<p> Igra je prekinuta, nema pobjednika </p>");
+      }
+      else{
+        alert("Pobjednik je " + name );
+        $("body").append("<p> Pobjednik je " + name + " </p>");
+        document.write("<table>");
+        for (key in scores) {
+          document.write("<tr>");
+          //var name = Object.keys(scores)[];
+          var name = scores[key];
+          document.write("<td>" + name + "</td>");
+          var pristupVrijednostiIgraca = scores[name];
+          var vrijednost = pristupVrijednostiIgraca.values;
+          document.write("<td>" + vrijednost + "</td>");
+          document.write("</tr>");
+        }
+        document.write("</table>");
+        for (key in scores) {
+
+
+        }
+      }
+    </script>
+  </body>
+</html>
